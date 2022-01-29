@@ -1,0 +1,2 @@
+# FXTrader
+fxautobinary

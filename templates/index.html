@@ -1,0 +1,739 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
+    rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
+    crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/homestyle.css' %}">
+
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+    <title>FXTrader</title>
+</head>
+<body>
+
+
+    <!--Navigation-->
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 fixed-top">
+        
+        <a href="#" class="navbar-brand"> 
+
+            <div class="logo p= 0"> 
+                <img src="{% static 'images/logo1.jpg' %}" alt="">
+            </div>    
+
+        </a>
+
+        <!--Toggle burger image-->
+        <button 
+            class="navbar-toggler" 
+            type="button" 
+            data-bs-toggle="collapse" 
+            data-bs-target="#navmenu">
+            <span 
+                class="navbar-toggler-icon">
+            </span>
+        </button>
+
+                <!--Toggle burger image end-->
+
+
+        <div class="container">
+            
+            <div class="collapse navbar-collapse" id="navmenu">
+                <ul class="navbar-nav ms-auto">
+                    
+                    {% if user.is_authenticated %}
+                    
+                    <li class="nav-item">
+                        <a href="#instructors" class="nav-link">Hello, {{user.username}}</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Bal: $ 0{{user.Balance}}.00</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="transactions/cardpayment" class="nav-link">DEPOSIT</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#PNexttowithdrawal" class="nav-link">WITHDRAW</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="accounts/logout" class="nav-link">
+                            <span class="text-danger"> LOGOUT
+
+                            </span></a>
+                    </li>
+
+                    {% else %}	
+                    <li class="nav-item">
+                        <a href="#strategy" class="nav-link">Trading Strategy</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#Questions" class="nav-link">Frequent-Questions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#analysts" class="nav-link">Analysts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="accounts/register" class="nav-link">Sign Up</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="accounts/login" class="nav-link">LOGIN</a>
+                    </li>
+
+                    {% endif %}
+
+                
+                </ul>
+            </div>
+
+        </div>
+        
+    </nav>
+
+
+    <!--ShowCase-->
+<!--ShowCase-->
+
+<section class="bg-dark text-light p-5 p-lg-1 pt-lg-5 text-center text-sm-start">
+    <div class="container">
+        <div class="d-md-flex align-items-center justify-content-between">
+        <div class="px-2">
+            <h1>Simpler <span class="text-warning"> Binary investments.</span></h1>
+            <p id="PNexttowithdrawal" class="lead my-4">
+                Forex Trader is the next-gen Trading solutions company. Our 
+                financial experts focus on creating sustainable and profitable 
+                Bitcoin and Forex investment opportunities. We are based in New 
+                Zealand, 50 Athol Street, Wellington, WLG 4PX, but our company 
+                serves investers at the global level via our cloud enabled system. 
+                FX Trader offers multiple possibilities in the Financial sector with 
+                key focus on Forex and Crypto market.
+            </p>
+            <button class="btn btn-primary btn-lg" 
+                    data-bs-toggle="modal"
+                    data-bs-target="#enroll">
+                    Start Trading
+            </button>
+
+            <br> <br>
+
+            {% if user.is_authenticated %}
+            <button class="btn btn-primary btn-lg" 
+                    data-bs-toggle="modal"
+                    data-bs-target="#Withdrawfunds">
+                    Get my funds
+            </button>
+            {% endif %}
+
+        </div>
+
+
+
+
+        <img class="img-fuid w-20 d-none d-sm-block" 
+        src="{% static 'images/fundamentals.jpg' %}" alt="">
+        </div>
+    </div>
+</section>
+
+
+
+     <!--NewLetter-->
+
+     <!--
+     <section class="bg-primary text-light p-5">
+         <div class="container">
+             <div class="d-md-flex justify-content-between align-items-center">
+                 <h3 class="mb-3 mb-md-0">Sign Up for Our Newsletter.</h3>
+                 
+                 <div class="input-group news-input">
+                    <input 
+                    type="text" 
+                    class="form-control" 
+                    placeholder="Enter your email here:">
+                    
+                    <button class="btn btn-dark btn-lg" 
+                    type="button"">Button</button>
+                  </div>
+
+             </div>
+         </div>
+     </section>
+
+     -->
+
+
+      <!--Boxes-->
+      <section class="p-3 pt-5">
+          <div class="container">
+            <h2 class="text-center mb-4">
+                Our Investment Options
+            </h2>
+              <div class="row text-center g-4">
+                  <div class="col-md">
+
+                      <div class="card bg-secondary text-light">
+                          <div class="card-body text-center">
+                              <div class="card-title  mb-1">
+
+                                <h1 class="card-text"> 12 HOURS</h1>
+
+                                  <!--
+                                      <i class="bi bi-laptop"></i>
+                                    -->
+                              </div>
+                            
+                              <p class="card-text">
+                                ✓Minimum Deposit $ 100 <br>
+                                ✓Maximum Deposit $ 1500 <br>
+                                ✓35% Min Interest <br>
+                                ✓65% Max Interest <br>
+                                ✓$ 10 Gift Bonus <br>
+                              </p>
+                              
+                              <a href="transactions/invest" class="btn btn-primary">INVEST NOW</a>
+                          </div>
+                      </div>
+
+                  </div>
+
+
+                  <div class="col-md">
+
+                    <div class="card bg-secondary text-light">
+                        <div class="card-body text-center">
+                            <div class="card-title  mb-1">
+
+                              <h1 class="card-text"> 24 HOURS </h1>
+
+                                <!--
+                                    <i class="bi bi-laptop"></i>
+                                  -->
+                            </div>
+                          
+                            <p class="card-text">
+                              ✓Minimum Deposit $ 250 <br>
+                              ✓Maximum Deposit $ 2500 <br>
+                              ✓45% Min Interest <br>
+                              ✓75% Max Interest <br>
+                              ✓$ 25 Gift Bonus <br>
+                            </p>
+                            <a href="transactions/invest" class="btn btn-primary">INVEST NOW</a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md">
+
+                    <div class="card bg-secondary text-light">
+                        <div class="card-body text-center">
+                            <div class="card-title  mb-1">
+
+                              <h1 class="card-text"> 7 DAYS </h1>
+
+                                <!--
+                                    <i class="bi bi-laptop"></i>
+                                  -->
+                            </div>
+                          
+                            <p class="card-text">
+                              ✓Minimum Deposit $ 500 <br>
+                              ✓Maximum Deposit 5000$ <br>
+                              ✓55% Min Interest <br>
+                              ✓85% Max Interest <br>
+                              ✓$ 100 Gift Bonus <br>
+                            </p>
+                            <a href="transactions/invest" class="btn btn-primary">INVEST NOW</a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md">
+
+                    <div class="card bg-secondary text-light">
+                        <div class="card-body text-center">
+                            <div class="card-title  mb-1">
+
+                              <h1 class="card-text"> 1 MONTH </h1>
+
+                                <!--
+                                    <i class="bi bi-laptop"></i>
+                                  -->
+                            </div>
+                          
+                            <p class="card-text">
+                              ✓Minimum Deposit $ 1000 <br>
+                              ✓Maximum Deposit $15000 <br>
+                              ✓75% Min Interest <br>
+                              ✓100% Max Interest <br>
+                              ✓$ 200 Gift Bonus <br>
+                            </p>
+                            <a href="transactions/invest" class="btn btn-primary" id = "strategy">INVEST NOW</a>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+              </div>
+          </div>
+      </section>
+
+
+            <!--The two lern sections-->
+                        <!--The first section-->
+      <section id="learn" class="p-3">
+          <div class="container">
+              <div class="row alignt-items-center justify-content-between">
+                  <div class="col-md">
+                      <img src="{% static 'images/react.jpg' %}" class="img-fluid" alt="">
+                  </div>
+                  <div class="col-md p-2">
+                      <h2>Trading Strategy and Technology.</h2>
+                      <p class="lead">
+                        Our custom made Arbitrage trading script does all the 
+                        hard work for you. Our team of professional technical 
+                        traders and analysts execute open market operations 
+                        and profit oriented decision on a daily basis and make
+                         profits from the volatility.
+                      </p>
+
+                      <p class="lead">
+                        FX Trader is also built on a secure, scalable, and reliable 
+                        blockchain. By applying blockchain technology, FX Trader is 
+                        the answer to solving the lack of financing for the new digital
+                         economy and Ensuring Financial Freedom.
+                      </p>
+                      <a href="accounts/login" class="btn btn-light mt-3">
+                          <i class="bi bi-chevron-right"></i> Read More
+                      </a>
+                  </div>
+              </div>
+          </div>
+      </section>
+
+
+
+                       <!--The Second section-->
+                       <section id="learn" class="p-4 bg-dark text-light">
+                        <div class="container">
+                            <div class="row alignt-items-center justify-content-between">
+                                
+                                <div class="col-md p-2">
+                                    <h2>Affilliate Program.</h2>
+
+                                    <p class="lead">
+                                        Our Affiliate Program opens up additional opportunities 
+                                        for all our investors. By inviting your friends, 
+                                        acquaintances, and relatives , you earn a guaranteed reward!
+                                    </p>
+              
+                                    <p class="lead">
+                                        20% of the total interest from your referrals!
+                                    </p>
+                                    <a href="#" class="btn btn-light mt-3">
+                                        <i id = "#Questions" class="bi bi-chevron-right"></i> Become an owner
+                                    </a>
+                                </div>
+                                  
+                                <div class="col-md">
+                                    <img src="{% static 'images/showcase.jpg' %}" class="img-fluid pt=3" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+            <!--Questions Accordion-->
+<section id="Questions" class="p-5">
+    <div class="container">
+        <h2 class="text-center mb-4">
+            Frequently asked questions.
+        </h2>
+
+        <!--The accordion for the quetions-->
+        
+        <div class="accordion accordion-flush" id="questions">
+            
+                    <!--Accordion 1-->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingOne">
+                          <button class="accordion-button collapsed" type="button" 
+                          data-bs-toggle="collapse" data-bs-target="#question-one">
+                            How do I withdraw my profits?
+                          </button>
+                        </h2>
+                        <div id="question-one" class="accordion-collapse collapse">
+                          <div class="accordion-body">
+                              Easy peasy! If you invested, log into the system after the 
+                              time plan you selected has come to pass. You will be able to see 
+                              your total funds at the to right. Click on 'Get my Funds' or the 'withdraw' button besides your balance, 
+                              enter the BTC wallet and amount. The amount can not exceed your profits to 
+                              ensure you make another trade. Like it?
+                          </div>
+                    </div> 
+                    
+
+                    <!--Accordion two-->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingOne">
+                          <button class="accordion-button collapsed" type="button" 
+                          data-bs-toggle="collapse" data-bs-target="#question-two">
+                        How to invest?          
+                          </button>
+                        </h2>
+                        <div id="question-two" class="accordion-collapse collapse">
+                          <div class="accordion-body">
+                              You dont need to study the market; our analysts will do it for free :).
+                              Simply register for an account, login to the system and select a plan.
+                              Make the payment with either BTC or a card. Wait for the maturity 
+                              according to your select plan.
+                            </div>
+                        </div> 
+                                                  
+
+                    <!--Accordion three-->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingOne">
+                          <button class="accordion-button collapsed" type="button" 
+                          data-bs-toggle="collapse" data-bs-target="#question-three">
+                            How to pay?
+                          </button>
+                        </h2>
+                        <div id="question-three" class="accordion-collapse collapse">
+                          <div class="accordion-body">
+                              The process is straight foward. If its a card, use our secure 
+                              payment gateway by filling out the form. If its BTC, copy the 
+                            wallet ID and use it to pay. Paste back the payment confirmation 
+                            code for easy reference. 
+                          </div>
+                    </div>
+
+
+                    <!--Accordion Four-->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingOne">
+                          <button class="accordion-button collapsed" type="button" 
+                          data-bs-toggle="collapse" data-bs-target="#question-four">
+                            How long do funds take to reflect?
+                          </button>
+                        </h2>
+                        <div id="question-four" class="accordion-collapse collapse">
+                          <div class="accordion-body">
+                              Once you have deposited or withdrawn funds, they may take 
+                              at least 30 minutes to 6 hours to reflect. That is because your
+                              payments have to be approved.
+                          </div>
+                    </div>
+                    <p id="analysts"></p>
+        </div>
+
+    </div>
+</section>
+
+
+    <!--Team/Employee Section-->
+<section class="p-5 bg-primary">
+    <div class="container">
+        <h2 class="text-center text-white">Our Team Members</h2>
+        <p class="lead text-center mb-5 text-white">
+            These are some of our top trading support staff from across the world.
+        </p>
+        <div class="row g-4">
+
+
+            <div class="col-md-6 col-lg-3">
+                <div class="card bg-light">
+                    <div class="card-body text-center">
+                        <img src="https://randomuser.me/api/portraits/men/11.jpg" 
+                        class="rounded-circle mb-3" alt="">
+                        <h3 class="card-title mb-3">John Ketter</h3>
+                       <p class="card-text" > A financial analyst who has majored on the big 5 currencies,
+                           market factors and their relative outcomes. Ketter has 8 years of experience 
+                           in profitable tradingHe is also a researcher on the 
+                           main profit making trades across all the continents.
+                       </p>
+                         <a href="#"><i class="lead bi bi-twitter text-dark mx-1"></i></a>
+                         <a href="#"><i class="lead bi bi-facebook text-dark mx-1"></i></a>
+                         <a href="#"><i class="lead bi bi-linkedin text-dark mx-1"></i></a>
+                         <a href="#"><i class="lead bi bi-instagram text-dark mx-1"></i></a>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-6 col-lg-3">
+                <div class="card bg-light">
+                    <div class="card-body text-center">
+                        <img src="https://randomuser.me/api/portraits/women/16.jpg" 
+                        class="rounded-circle mb-3" alt="">
+                        <h3 class="card-title mb-3">Jane Weber</h3>
+                       <p class="card-text">Based in South Africa, Jane is an iron lady with a whooping 12-year 
+                           technical understanding of main market analysis and trading strategy concepts.
+                           Jane has proven as one of the best with a 99% profit chance. Africa is better with her.</p>
+                         <a href="#"><i class="lead bi bi-twitter text-dark mx-1"></i></a>
+                         <a href="#"><i class="lead bi bi-facebook text-dark mx-1"></i></a>
+                         <a href="#"><i class="lead bi bi-linkedin text-dark mx-1"></i></a>
+                         <a href="#"><i class="lead bi bi-instagram text-dark mx-1"></i></a>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-6 col-lg-3">
+                <div class="card bg-light">
+                    <div class="card-body text-center">
+                        <img src="https://randomuser.me/api/portraits/men/17.jpg" 
+                        class="rounded-circle mb-3" alt="">
+                        <h3 class="card-title mb-3">Harry Madney</h3>
+                       <p class="card-text">Good profits needs great decisions. 
+                           Madney ensures sound financial advice to avoid blind investments.
+                           If you have visited our socials, you have met him. 
+                           He is a Charming Russian who will probably safeguard your interests.</p>
+                         <a href="#"><i class="lead bi bi-twitter text-dark mx-1"></i></a>
+                         <a href="#"><i class="lead bi bi-facebook text-dark mx-1"></i></a>
+                         <a href="#"><i class="lead bi bi-linkedin text-dark mx-1"></i></a>
+                         <a href="#"><i class="lead bi bi-instagram text-dark mx-1"></i></a>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-6 col-lg-3">
+                <div class="card bg-light">
+                    <div class="card-body text-center">
+                        <img src="https://randomuser.me/api/portraits/women/11.jpg" 
+                        class="rounded-circle mb-3" alt="">
+                        <h3 class="card-title mb-3">Kate Camala</h3>
+                       <p class="card-text">She is the chief when it comes to linking trade bots and 
+                           technology. With an extenssive understanding of Block Chain and AI, Camala
+                        majors on making computer systems decide and trade as humans. Her skill is
+                         better experienced than said. </p>
+                         <a href="#"><i class="lead bi bi-twitter text-dark mx-1"></i></a>
+                         <a href="#"><i class="lead bi bi-facebook text-dark mx-1"></i></a>
+                         <a href="#"><i class="lead bi bi-linkedin text-dark mx-1"></i></a>
+                         <a href="#"><i class="lead bi bi-instagram text-dark mx-1"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <!--Contact us and map.-->
+
+    <section class="p-5">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-md">
+                    <h2 class="text-center mb-4">
+                        Contact Info
+                    </h2>
+                    <ul class="list-group list-group-flush lead">
+                        
+                        <li class="list-group-item">
+                            <span class="fw-bold">Main Location:</span> WLG 4PX, Wellington, New Zealand.
+                        </li>
+                        
+                        <li class="list-group-item">
+                            <span class="fw-bold">Adress:</span> 50 Athol Street.
+                        </li>
+
+                        <li class="list-group-item">
+                            <span class="fw-bold">Phone Number:</span>  890 975 8599.
+                        </li>
+
+                        <li class="list-group-item">
+                            <span class="fw-bold">Support Email:</span> supportfxtrader@fxtrader.com
+                        </li>
+
+                        <li class="list-group-item">
+                            <span class="fw-bold">Other Email:</span> fxtrader@gmail.com
+                        </li>
+
+
+                    </ul>
+                </div>
+
+
+                    <!--The mapbox begins-->
+                <div class="col-md">
+                    <div id="map"></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+     <!-- Modal -->
+     <div class="modal fade text-dark" 
+     id="enroll" 
+     tabindex="-1" 
+     aria-labelledby="enrollLabel" 
+     aria-hidden="true">
+         <div class="modal-dialog">
+         <div class="modal-content">
+             <div class="modal-header">
+             <h5 class="modal-title" id="enrollLabel">
+                 
+                 Fill this trader's form:
+
+             </h5>
+             <button type="button" 
+             class="btn-close" 
+             data-bs-dismiss="modal" 
+             aria-label="Close">
+         </button>
+           </div>
+
+
+             <div class="modal-body">
+             <!--
+                 <p class="lead">Fill out this form and we will get back to you:</p>
+             -->
+
+            
+                        <form action="starttrade" method="post">
+
+                            {% csrf_token %}
+
+                    
+                            <div class="mb-3">
+                                <label for="firstname" class="col-form-label">Firt Name</label>
+                            </div>
+                            <input class="form-control" type="text" name = "firstname" placeholder="">
+
+                            <div class="mb-3">
+                                <label for="lastname" class="col-form-label">Last Name</label>
+                            </div>
+                            <input class="form-control" type="text" name = "lastname" placeholder="">
+
+                            <div class="mb-3">
+                                <label for="phonenumber" class="col-form-label">Phone Number</label>
+                            </div>
+                            <input class="form-control" type="text" name = "phonenumber" placeholder="">
+
+                            <div class="mb-3">
+                                <label for="emailadress" class="col-form-label">Email Adress</label>
+                            </div>
+                            <input class="form-control" type="text" name = "emailadress" placeholder=""> <br>
+
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <input type="submit" class="btn btn-secondary" data-bs-dismiss="modal" value="SEND">
+
+                        </form>
+
+             </div>
+             
+         </div>
+         </div>
+     </div>
+<!--  //End  of Modal -->
+
+ <!-- Modal -->
+ <div class="modal fade text-dark" 
+ id="Withdrawfunds" 
+ tabindex="-1" 
+ aria-labelledby="WithdrawfundsLabel" 
+ aria-hidden="true">
+     <div class="modal-dialog">
+     <div class="modal-content">
+         <div class="modal-header">
+         <h5 class="modal-title" id="WithdrawfundsLabel">
+             
+             Fill in the withdarwal details:
+
+         </h5>
+         <button type="button" 
+         class="btn-close" 
+         data-bs-dismiss="modal" 
+         aria-label="Close">
+     </button>
+       </div>
+
+
+         <div class="modal-body">
+         <!--
+             <p class="lead">Fill out this form and we will get back to you:</p>
+         -->
+         <form>
+    
+
+             <div class="mb-3">
+                 <label for="first-name" class="col-form-label">Receiving Bitcoin Wallet</label>
+             </div>
+             <input type="text" class="form-control" id="first-name">
+
+            <div class="mb-3">
+                 <label for="first-name" class="col-form-label">Amount to Withdraw</label>
+             </div>
+             <input type="text" class="form-control" id="first-name">
+
+             <div class="mb-3">
+                 <label for="first-name" class="col-form-label">Confirm Email Adress</label>
+             </div>
+             <input type="text" class="form-control" id="first-name">
+         </form>
+         </div>
+         <div class="modal-footer">
+         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+         <button type="button" class="btn btn-primary">Submit</button>
+         </div>
+     </div>
+     </div>
+ </div>
+<!--  //End  of Modal -->
+
+
+
+
+      <!--The Footer begins-->
+    <footer class="p-5 bg-dark text-white text-center position-relative">
+        <div class="container">
+            <p class="lead">Copyright FX Trader &copy; 2021 .</p>
+
+        <!--Return up arrow and circle-->
+
+            <a href="#" class="position-absolute bottom-0 end-0 p-5">
+
+                <i class="bi bi-arrow-up-circle h1"></i>
+
+            </a>
+        </div>
+    </footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" 
+    crossorigin="anonymous"></script>
+
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+
+<script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoibW9uZXltaW5jZXJzIiwiYSI6ImNreG9wcmVnaTAyNmIydW12azIydDNzbnMifQ.l7-wD562qWU7aoZVeQbX-A';
+    var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11',
+    center:[-71.060982,42.35725],
+    zoom:18,
+
+    });
+    </script>
+
+</body>
+</html>
